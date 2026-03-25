@@ -160,7 +160,26 @@ a.  You have the following code chunk again.
 
     Add `fig-width` and `fig-asp` as code chunk options. Try setting `fig-width` to values between 1 and 10. Try setting `fig-asp` to values between 0.1 and 1. Re-render the document after each value and observe its effect. Ultimately, choose values that make the plot look visually pleasing in the rendered document. Based on the behavior you observe, describe what each chunk option does.
 
-b.  You have the following code chunk, but look carefully, it's not exactly the same!
+```{r}
+#| eval: true
+#| fig-width: 6
+#| fig-asp: 0.6
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Comment:
+
+Best options: width = 6 and asp = 0.6
+
+What they do:
+
+fig-width: controls the width of the plot (smaller value = thinner plot, larger value = wider plot)
+
+fig-asp: controls the height of the plot relative to the width (smaller value = short wide plot, larger value = taller square plot)
+
+a.  b\. You have the following code chunk, but look carefully, it's not exactly the same!
 
     ```{r}
     #| eval: false
@@ -170,6 +189,16 @@ b.  You have the following code chunk, but look carefully, it's not exactly the 
     ```
 
     Add `error` as a code chunk option and set it to `false` and then set it to `true`. After each value, render your document and observe its effect. Ultimately, choose the value that allows you to render your document without altering the code. Based on the behavior you observe, describe what this code chunk option does.
+
+```{r}
+#| eval: true
+#| error: true
+
+gplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Comment: The best option is error: true because it allows for the document to still be rendered even though there is an error in the code.
 
 ::: callout-tip
 Reading [the documentation](https://quarto.org/docs/reference/formats/pdf.html#execution) might also be helpful.
