@@ -11,6 +11,7 @@ format: pdf
 
 library(datasauRus)
 library(tidyverse)
+library(palmerpenguins)
 ```
 
 # Introduction
@@ -59,7 +60,7 @@ b.  Which of the chunk label options above is the best option? Explain your reas
 You have the following code chunk:
 
 ```{r}
-#| eval: false
+#| eval: true
     
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
   geom_point()
@@ -70,6 +71,81 @@ Add the following code chunk options, one at a time, and set each to `false` and
 -   `echo`
 -   `warning`
 -   `eval`
+
+Echo True:
+
+```{r}
+#| echo: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Echo False:
+
+```{r}
+#| echo: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Warning True:
+
+```{r}
+#| warning: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Warning False:
+
+```{r}
+#| warning: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Eval True:
+
+```{r}
+#| eval: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Eval False:
+
+```{r}
+#| eval: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Best Options: echo true, warning false, eval true
+
+```{r}
+#| echo: true
+#| warning: false
+#| eval: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Comment:
+
+What each one does:
+
+Echo: decides if the code if shown in the rendered document (shown when true, absent when false)
+
+Warning: decides if the warning messages are show in the output (shown when true, absent when false)
+
+Eval: decides if the code is run or not in the rendered document (run when true, not run when false)
 
 ## Question 3
 
@@ -96,7 +172,7 @@ b.  You have the following code chunk, but look carefully, it's not exactly the 
     Add `error` as a code chunk option and set it to `false` and then set it to `true`. After each value, render your document and observe its effect. Ultimately, choose the value that allows you to render your document without altering the code. Based on the behavior you observe, describe what this code chunk option does.
 
 ::: callout-tip
-Reading [the documentation](https://quarto.org/docs/reference/formats/pdf.html#execution) might also be hepful.
+Reading [the documentation](https://quarto.org/docs/reference/formats/pdf.html#execution) might also be helpful.
 :::
 
 ::: render-commit-push
