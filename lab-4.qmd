@@ -1,6 +1,8 @@
 ---
 title: "Lab 4 - Potpourri"
 categories: "Lab"
+author: "Jessica St Jean"
+format: pdf
 ---
 
 ```{r}
@@ -9,6 +11,7 @@ categories: "Lab"
 
 library(datasauRus)
 library(tidyverse)
+library(palmerpenguins)
 ```
 
 # Introduction
@@ -21,6 +24,13 @@ In this lab you'll review and get practice with a variety of concepts, methods, 
 
 a.  Add each of strings below to the code chunk provided in your document, render the document, and determine if the string is a proper code chunk label. If not, explain why and describe how you could fix it so the document renders.
 
+    ```{r}
+    #| eval: true
+        
+    ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point()
+    ```
+
     -   Chunk label 1:
 
     ```         
@@ -28,11 +38,31 @@ a.  Add each of strings below to the code chunk provided in your document, rende
     #| with-a-line-break
     ```
 
+    ```{r}
+    #| eval: true
+    #| label: a-label-with-a-line-break
+        
+    ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point()
+    ```
+
+    **Comment: It cannot go over two lines so I had to make it all into one line for it to render**
+
     -   Chunk label 2:
 
     ```         
     #| label: areaaaaaaaaaaaaaaaaaaaaaallllllllllllllllllyyyyylooooooooooooooooooonglabel 
     ```
+
+    ```{r}
+    #| eval: true
+    #| label: areaaaaaaaaaaaaaaaaaaaaaallllllllllllllllllyyyyylooooooooooooooooooonglabel 
+        
+    ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point()
+    ```
+
+    **Comment: It renders**
 
     -   Chunk label 3:
 
@@ -40,11 +70,31 @@ a.  Add each of strings below to the code chunk provided in your document, rende
     #| label: label with spaces
     ```
 
+    ```{r}
+    #| eval: true
+    #| label: label-with-spaces
+        
+    ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point()
+    ```
+
+    **Comment: It does not allow for spaces to be in labels so I had to put dashes in between the words to allow it to render**
+
     -   Chunk label 4:
 
     ```         
     #| label: label-with-dashes
     ```
+
+    ```{r}
+    #| eval: true
+    #| label: label-with-dashes
+        
+    ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+      geom_point()
+    ```
+
+    **Comment: This works with no changes**
 
     ::: callout-tip
     Try each label option in the code chunk provided in your document. If it gives you an error (document doesn't render), you know it's not a proper chunk label.
@@ -52,12 +102,14 @@ a.  Add each of strings below to the code chunk provided in your document, rende
 
 b.  Which of the chunk label options above is the best option? Explain your reasoning in 1-2 sentences.
 
+    **Comment: The label with dashes is the best option, it looks the cleanest and allows the document to render properly.**
+
 ## Question 2
 
 You have the following code chunk:
 
 ```{r}
-#| eval: false
+#| eval: true
     
 ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
   geom_point()
@@ -68,6 +120,81 @@ Add the following code chunk options, one at a time, and set each to `false` and
 -   `echo`
 -   `warning`
 -   `eval`
+
+Echo True:
+
+```{r}
+#| echo: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Echo False:
+
+```{r}
+#| echo: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Warning True:
+
+```{r}
+#| warning: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Warning False:
+
+```{r}
+#| warning: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Eval True:
+
+```{r}
+#| eval: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Eval False:
+
+```{r}
+#| eval: false
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+Best Options: echo true, warning false, eval true
+
+```{r}
+#| echo: true
+#| warning: false
+#| eval: true
+    
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+**Comment:**
+
+**What each one does:**
+
+**Echo: decides if the code if shown in the rendered document (shown when true, absent when false)**
+
+**Warning: decides if the warning messages are show in the output (shown when true, absent when false)**
+
+**Eval: decides if the code is run or not in the rendered document (run when true, not run when false)**
 
 ## Question 3
 
@@ -82,7 +209,26 @@ a.  You have the following code chunk again.
 
     Add `fig-width` and `fig-asp` as code chunk options. Try setting `fig-width` to values between 1 and 10. Try setting `fig-asp` to values between 0.1 and 1. Re-render the document after each value and observe its effect. Ultimately, choose values that make the plot look visually pleasing in the rendered document. Based on the behavior you observe, describe what each chunk option does.
 
-b.  You have the following code chunk, but look carefully, it's not exactly the same!
+```{r}
+#| eval: true
+#| fig-width: 6
+#| fig-asp: 0.6
+
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+**Comment:**
+
+**Best options: width = 6 and asp = 0.6**
+
+**What they do:**
+
+**fig-width: controls the width of the plot (smaller value = thinner plot, larger value = wider plot)**
+
+**fig-asp: controls the height of the plot relative to the width (smaller value = short wide plot, larger value = taller square plot)**
+
+a.  b\. You have the following code chunk, but look carefully, it's not exactly the same!
 
     ```{r}
     #| eval: false
@@ -93,8 +239,18 @@ b.  You have the following code chunk, but look carefully, it's not exactly the 
 
     Add `error` as a code chunk option and set it to `false` and then set it to `true`. After each value, render your document and observe its effect. Ultimately, choose the value that allows you to render your document without altering the code. Based on the behavior you observe, describe what this code chunk option does.
 
+```{r}
+#| eval: true
+#| error: true
+
+gplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm)) + 
+  geom_point()
+```
+
+**Comment: The best option is error: true because it allows for the document to still be rendered even though there is an error in the code.**
+
 ::: callout-tip
-Reading [the documentation](https://quarto.org/docs/reference/formats/pdf.html#execution) might also be hepful.
+Reading [the documentation](https://quarto.org/docs/reference/formats/pdf.html#execution) might also be helpful.
 :::
 
 ::: render-commit-push
@@ -107,13 +263,16 @@ Render, commit, and push one last time. Make sure that you commit and push all c
 
 ## Question 4
 
-The following chart was [shared](https://twitter.com/GraphCrimes/status/1566264004288331776) by \@GraphCrimes on X/Twitter on September 3, 2022.
+The following chart was [shared](https://twitter.com/GraphCrimes/status/1566264004288331776) by \@GraphCrimes on X/Twitter on September 3, 2022. What is misleading about this graph?
 
-![](images/private-sector.png){fig-align="center"}
+(I had to remove the file link to the graph because it wasn't working)
 
-a.  What is misleading about this graph?
-b.  Suppose you wanted to recreate this plot, with improvements to avoid its misleading pitfalls from part (a). You would obviously need the data from the survey in order to be able to do that. How many observations would this data have? How many variables (at least) should it have, and what should those variables be?
-c.  Load the data for this survey from `data/survation.csv`. Confirm that the data match the percentages from the visualization. That is, calculate the percentages of public sector, private sector, don't know for each of the services and check that they match the percentages from the plot.
+a.  Suppose you wanted to recreate this plot, with improvements to avoid its misleading pitfalls from part (a). You would obviously need the data from the survey in order to be able to do that. How many observations would this data have? How many variables (at least) should it have, and what should those variables be?\
+    \
+    **Comment: The data would have 1858 observations, it should have at least 2 variables, the service (rail, water, energy, royal mail) and the response (public, private, don't know).**\
+b.  Load the data for this survey from `data/survation.csv`. Confirm that the data match the percentages from the visualization. That is, calculate the percentages of public sector, private sector, don't know for each of the services and check that they match the percentages from the plot.\
+    \
+    **Comment: I cannot do this question because there is no survation.csv in the project files**
 
 ## Question 5
 
@@ -128,6 +287,8 @@ Create an improved version of the visualization. Your improved visualization:
 -   does not need to have a bolded title or a gray background
 
 How does the improved visualization look different than the original? Does it send a different message at a first glance?
+
+**Comment: I cannot do this question without the survation data.**
 
 ::: callout-tip
 Use `\n` to add a line break to your title. And note that since the title is very long, it might run off the page in your code. That's ok!
@@ -145,7 +306,7 @@ Render, commit, and push one last time. Make sure that you commit and push all c
 
 The data frame you will be working with in this part is called `datasaurus_dozen` and it's in the **datasauRus** package. This single data frame contains 13 datasets, designed to show us why data visualization is important and how summary statistics alone can be misleading. The different datasets are marked by the `dataset` variable, as shown in @fig-datasaurus.
 
-![The \`datasaurus_dozen\` data frame stacks 13 datasets on top of each other. This figure shows the first three datasets.](images/datasaurus-dozen.png){#fig-datasaurus fig-align="center" width="432"}
+(I had to remove the image link again because it was causing errors when rendering)
 
 ::: callout-note
 If it's confusing that the data frame is called `datasaurus_dozen` when it contains 13 datasets, you're not alone! Have you heard of a [baker's dozen](https://www.mentalfloss.com/article/32259/why-bakers-dozen-13)?
@@ -167,6 +328,21 @@ In a single pipeline, calculate the mean of `x`, mean of `y`, standard deviation
 There are 13 groups but `tibble`s only print out 10 rows by default. Add `print(n = 13)` as the last step of your pipeline to display all rows.
 :::
 
+```{r}
+datasaurus_dozen |>
+  group_by(dataset) |>
+  summarise(
+      mean_x = mean(x),
+    mean_y = mean(y),
+    sd_x = sd(x),
+    sd_y = sd(y),
+    correlation = cor(x, y)
+  ) |>
+  print(n=13)
+```
+
+**Comment:** The statistics are very similar across all the datasets.
+
 ## Question 7
 
 Create a scatterplot of `y` versus `x` and color and facet it by `dataset`. Then, in 1-2 sentences, how these plots compare across groups (datasets). How does your response in this question compare to your response to the previous question and what does this say about using visualizations and summary statistics when getting to know a dataset?
@@ -175,12 +351,18 @@ Create a scatterplot of `y` versus `x` and color and facet it by `dataset`. Then
 When you both color and facet by the same variable, you'll end up with a redundant legend. Turn off the legend by adding `show.legend = FALSE` to the geom creating the legend.
 :::
 
+```{r}
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset)) +
+  geom_point(show.legend = FALSE) +
+  facet_wrap(~ dataset) +
+  theme_minimal()
+```
+
+**Comment:** Each of the datasets has a completely different visual pattern made with its points. Compared to the results from the last question (where all of the statistics are very similar) it shows that statistics can possibly be misleading and visualization is important when you want to understand the data fully.
+
 ::: render-commit-push
 Render, commit, and push one last time. Make sure that you commit and push all changed documents and your Git pane is completely empty before proceeding.
-
-
 :::
-
 
 ## Grading
 
